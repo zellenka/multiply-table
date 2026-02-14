@@ -12,12 +12,18 @@
         <p style="font-size: 1.4rem; margin: 15px 0 25px; color: #1a237e; font-weight: bold;">Тренуйте навички множення з розвагою!</p>
         
         <div class="setting-group">
-            <label for="min-number">Діапазон чисел:</label>
-            <div class="setting-controls">
-                <input type="number" id="min-number" min="1" max="12" value="1">
-                <span style="font-size: 1.8rem; font-weight: bold; color: #546e7a">до</span>
-                <input type="number" id="max-number" min="1" max="12" value="10">
-                <div class="range-display" id="number-range-display">1 до 10</div>
+            <label>Виберіть числа для тренування:</label>
+            <div class="checkboxes-grid">
+                <label class="checkbox-label"><input type="checkbox" class="number-checkbox" value="1"> 1</label>
+                <label class="checkbox-label"><input type="checkbox" class="number-checkbox" value="2"> 2</label>
+                <label class="checkbox-label"><input type="checkbox" class="number-checkbox" value="3"> 3</label>
+                <label class="checkbox-label"><input type="checkbox" class="number-checkbox" value="4"> 4</label>
+                <label class="checkbox-label"><input type="checkbox" class="number-checkbox" value="5"> 5</label>
+                <label class="checkbox-label"><input type="checkbox" class="number-checkbox" value="6"> 6</label>
+                <label class="checkbox-label"><input type="checkbox" class="number-checkbox" value="7"> 7</label>
+                <label class="checkbox-label"><input type="checkbox" class="number-checkbox" value="8"> 8</label>
+                <label class="checkbox-label"><input type="checkbox" class="number-checkbox" value="9"> 9</label>
+                <label class="checkbox-label"><input type="checkbox" class="number-checkbox" value="10"> 10</label>
             </div>
         </div>
         
@@ -69,17 +75,20 @@
             <button class="key" data-value="1">1</button>
             <button class="key" data-value="2">2</button>
             <button class="key" data-value="3">3</button>
-            <button class="key backspace">⌫</button>
             
             <button class="key" data-value="4">4</button>
             <button class="key" data-value="5">5</button>
             <button class="key" data-value="6">6</button>
-            <button class="key special" data-value="0">0</button>
-            
             <button class="key" data-value="7">7</button>
+            
             <button class="key" data-value="8">8</button>
             <button class="key" data-value="9">9</button>
-            <button class="key enter">ОК</button>
+            <button class="key" data-value="0">0</button>
+        </div>
+        
+        <div id="keyboard-controls">
+            <button class="key-control backspace" id="backspace-btn">⌫ Видалити</button>
+            <button class="key-control enter" id="ok-btn">ОК Відповідь</button>
         </div>
     </div>
     
