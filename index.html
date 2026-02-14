@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Майстер множення</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="screen" id="settings-screen">
+        <h1 class="screen-title">Майстер множення</h1>
+        <p style="font-size: 1.4rem; margin: 15px 0 25px; color: #1a237e; font-weight: bold;">Тренуйте навички множення з розвагою!</p>
+        
+        <div class="setting-group">
+            <label for="min-number">Діапазон чисел:</label>
+            <div class="setting-controls">
+                <input type="number" id="min-number" min="1" max="12" value="1">
+                <span style="font-size: 1.8rem; font-weight: bold; color: #546e7a">до</span>
+                <input type="number" id="max-number" min="1" max="12" value="10">
+                <div class="range-display">1 to 10</div>
+            </div>
+        </div>
+        
+        <div class="setting-group">
+            <label for="time-per-exercise">Час на вправу (секунди):</label>
+            <div class="setting-controls">
+                <input type="number" id="time-per-exercise" min="3" max="60" value="10">
+                <div class="time-display">10 секунд</div>
+            </div>
+        </div>
+        
+        <div class="setting-group">
+            <label for="total-exercises">Кількість вправ:</label>
+            <div class="setting-controls">
+                <input type="number" id="total-exercises" min="1" max="100" value="10">
+                <div class="range-display">10 вправ</div>
+            </div>
+        </div>
+        
+        <button class="start-btn" id="start-btn">ПОЧАТИ ТРЕНУВАННЯ</button>
+        
+        <div style="margin-top: 30px; font-size: 1.1rem; color: #455a64; line-height: 1.5;">
+            <p><strong>Як грати:</strong></p>
+            <p>• Вирішуйте приклади множення перед тим, як закінчиться час</p>
+            <p>• Використовуйте екранну клавіатуру для введення відповіді</p>
+            <p>• Правильні відповіді переводять вас до наступного завдання одразу</p>
+            <p>• Неправильні відповіді дають вам ще один шанс (але поспішайте!)</p>
+        </div>
+    </div>
+    
+    <div class="screen" id="game-screen">
+        <h1 class="screen-title">Математичний виклик!</h1>
+        
+        <div id="score-display">
+            <span class="correct-score">✓ Правильно: <span id="correct-count">0</span></span>
+            <span class="wrong-score">✗ Неправильно: <span id="wrong-count">0</span></span>
+        </div>
+        
+        <div id="timer-container">
+            <div id="timer-bar"></div>
+            <div id="timer-text">10</div>
+        </div>
+        
+        <div id="question-display">5 × 7 = ?</div>
+        
+        <div id="input-display">0</div>
+        
+        <div id="keyboard">
+            <button class="key" data-value="1">1</button>
+            <button class="key" data-value="2">2</button>
+            <button class="key" data-value="3">3</button>
+            <button class="key backspace">⌫</button>
+            
+            <button class="key" data-value="4">4</button>
+            <button class="key" data-value="5">5</button>
+            <button class="key" data-value="6">6</button>
+            <button class="key special" data-value="0">0</button>
+            
+            <button class="key" data-value="7">7</button>
+            <button class="key" data-value="8">8</button>
+            <button class="key" data-value="9">9</button>
+            <button class="key enter">ОК</button>
+        </div>
+    </div>
+    
+    <div class="screen" id="summary-screen">
+        <h1 class="screen-title">Тренування завершено!</h1>
+        
+        <div class="final-score final-correct">
+            Правильні відповіді: <span id="final-correct">0</span>
+        </div>
+        
+        <div class="final-score final-wrong">
+            Неправильні відповіді: <span id="final-wrong">0</span>
+        </div>
+        
+        <div style="font-size: 2rem; margin: 25px 0; font-weight: bold; color: #546e7a;">
+            Загальний результат: <span id="total-score">0</span>%
+        </div>
+        
+        <button class="restart-btn" id="restart-btn">ТРЕНУВАТИСЯ ЗНОВУ</button>
+        
+        <div style="margin-top: 30px; font-size: 1.3rem; color: #37474f; line-height: 1.6;">
+            <p>Чудова робота з практики таблиці множення!</p>
+            <p>Продовжуйте тренуватися, щоб стати Майстром математики!</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
