@@ -10,7 +10,8 @@ const minNumberInput = document.getElementById('min-number');
 const maxNumberInput = document.getElementById('max-number');
 const timePerExerciseInput = document.getElementById('time-per-exercise');
 const totalExercisesInput = document.getElementById('total-exercises');
-const rangeDisplay = document.querySelector('.range-display');
+const rangeDisplay = document.getElementById('number-range-display');
+const exercisesDisplay = document.getElementById('exercises-display');
 const timeDisplay = document.querySelector('.time-display');
 
 // Game elements
@@ -98,8 +99,7 @@ function updateSettingsDisplay() {
     if (exercises < 1) exercises = 1;
     if (exercises > 100) exercises = 100;
     totalExercisesInput.value = exercises;
-    document.querySelector('.setting-group:last-child .range-display').textContent = 
-        `${exercises} вправ`;
+    exercisesDisplay.textContent = `${exercises} вправ`;
 }
 
 // Start the game with current settings
@@ -212,7 +212,7 @@ function handleKeyPress(e) {
     else if (keyType === 'number') {
         // Don't allow input longer than the answer could be
         if (gameState.currentInput.length < String(gameState.currentAnswer).length + 1) {
-            if (gameState.currentInput === '0') {
+            if (gameState.currentInput === '0' || gameState.currentInput === '') {
                 gameState.currentInput = value;
             } else {
                 gameState.currentInput += value;
