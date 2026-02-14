@@ -148,10 +148,24 @@ function generateQuestion() {
     inputDisplay.classList.remove('wrong');
     gameState.isAnswerSubmitted = false;
     
-    // Generate random numbers: first number is 1-10, second is from selected numbers
-    const a = Math.floor(Math.random() * 10) + 1;
-    const selectedIndex = Math.floor(Math.random() * gameState.selectedNumbers.length);
-    const b = gameState.selectedNumbers[selectedIndex];
+    // Filter out 1 from selected numbers and get available numbers
+    const availableNumbers = gameState.selectedNumbers.filter(num => num !== 1);
+    
+    // If all selected numbers are 1 (edge case), skip this exercise
+    if (availableNumbers.length === 0) {
+        gameState.currentExercise++;
+        if (gameState.currentExercise >= gameState.totalExercises) {
+            endGame();
+        } else {
+            generateQuestion();
+        }
+        return;
+    }
+    
+    // Generate random numbers: first number is 2-10, second is from available selected numbers (excluding 1)
+    const a = Math.floor(Math.random() * 9) + 2;  // 2-10
+    const selectedIndex = Math.floor(Math.random() * availableNumbers.length);
+    const b = availableNumbers[selectedIndex];
     
     // Calculate answer
     gameState.currentAnswer = a * b;
