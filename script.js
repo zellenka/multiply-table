@@ -119,6 +119,7 @@ function startGame() {
     gameState.correctCount = 0;
     gameState.wrongCount = 0;
     gameState.currentInput = '';
+    gameState.lastGeneratedNumbers = [];
     
     // Update UI
     correctCountDisplay.textContent = '0';
@@ -135,6 +136,15 @@ function startGame() {
     generateQuestion();
 }
 
+function generateNumbers(availableNumbers) {
+    // Generate random numbers: first number is 2-9, second is from available selected numbers (excluding 1 and 10)
+    let a = Math.floor(Math.random() * 9) + 1;  // 2-9
+    if (a === 1) a = 2; // Ensure first number is not 1
+    const selectedIndex = Math.floor(Math.random() * availableNumbers.length);
+    const b = availableNumbers[selectedIndex];
+    return [a, b];
+}
+
 // Generate a new multiplication question
 function generateQuestion() {
     // Clear any existing timers
@@ -149,7 +159,7 @@ function generateQuestion() {
     gameState.isAnswerSubmitted = false;
     
     // Filter out 1 from selected numbers and get available numbers
-    const availableNumbers = gameState.selectedNumbers.filter(num => num !== 1);
+    const availableNumbers = gameState.selectedNumbers.filter(num => num !== 1 && num !== 10);
     
     // If all selected numbers are 1 (edge case), skip this exercise
     if (availableNumbers.length === 0) {
@@ -162,11 +172,16 @@ function generateQuestion() {
         return;
     }
     
-    // Generate random numbers: first number is 2-10, second is from available selected numbers (excluding 1)
-    const a = Math.floor(Math.random() * 9) + 2;  // 2-10
-    const selectedIndex = Math.floor(Math.random() * availableNumbers.length);
-    const b = availableNumbers[selectedIndex];
-    
+    let [a, b] = generateNumbers(availableNumbers);
+    console.log(`Generated numbers: ${a}, ${b}`);
+    while (gameState.lastGeneratedNumbers.length > 0 && (a === gameState.lastGeneratedNumbers[0] && b === gameState.lastGeneratedNumbers[1] || a === gameState.lastGeneratedNumbers[1] && b === gameState.lastGeneratedNumbers[0])) {
+        // Regenerate if the same question was just asked
+        const numbers = generateNumbers(availableNumbers);
+        a = numbers[0];
+        b = numbers[1];
+    }
+
+    gameState.lastGeneratedNumbers = [a, b];
     // Calculate answer
     gameState.currentAnswer = a * b;
     
@@ -284,7 +299,7 @@ function submitAnswer() {
         
         // Visual feedback
         inputDisplay.classList.remove('wrong');
-        questionDisplay.textContent = questionDisplay.textContent.replace('?', `= ${gameState.currentAnswer} ✓`);
+        questionDisplay.textContent = questionDisplay.textContent.replace('?', `${gameState.currentAnswer} ✓`);
         
         // Move to next question after delay
         setTimeout(() => {

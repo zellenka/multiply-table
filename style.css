@@ -86,7 +86,6 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
     padding: 12px;
     background: #f5f5f5;
     border: 2px solid #4caf50;
@@ -104,9 +103,9 @@ body {
 
 .checkbox-label input[type="checkbox"] {
     cursor: pointer;
-    width: 18px;
-    height: 18px;
     accent-color: #4caf50;
+    visibility: hidden;
+        width: 0;
 }
 
 .checkbox-label input[type="checkbox"]:checked + label,
