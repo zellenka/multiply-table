@@ -4,6 +4,7 @@ const gameScreen = document.getElementById('game-screen');
 const summaryScreen = document.getElementById('summary-screen');
 const startBtn = document.getElementById('start-btn');
 const restartBtn = document.getElementById('restart-btn');
+const langToggleBtn = document.getElementById('lang-toggle-btn');
 
 // Settings elements
 const numberCheckboxes = document.querySelectorAll('.number-checkbox');
@@ -45,14 +46,22 @@ let gameState = {
 
 // Initialize the game
 function init() {
+    // Initialize language
+    initializeLanguage();
+
+    // Language toggle button
+    langToggleBtn.addEventListener('click', toggleLanguage);
+
     // Set up event listeners for checkbox inputs
     numberCheckboxes.forEach(checkbox => {
         checkbox.addEventListener('change', updateSettingsDisplay);
     });
     
     // Set up event listeners for time and exercises inputs
-    timePerExerciseInput.addEventListener('input', updateSettingsDisplay);
-    totalExercisesInput.addEventListener('input', updateSettingsDisplay);
+    timePerExerciseInput.addEventListener('blur', validateTimeInput);
+    timePerExerciseInput.addEventListener('input', updateTimeDisplay);
+    totalExercisesInput.addEventListener('blur', validateExercisesInput);
+    totalExercisesInput.addEventListener('input', updateExercisesDisplay);
     
     // Start button event listener
     startBtn.addEventListener('click', startGame);
@@ -74,6 +83,8 @@ function init() {
     
     // Initialize settings display
     updateSettingsDisplay();
+    validateTimeInput();
+    validateExercisesInput();
 }
 
 // Update the settings display based on input values
@@ -90,7 +101,7 @@ function updateSettingsDisplay() {
     // Validate time per exercise
     let time = parseInt(timePerExerciseInput.value) || 10;
     if (time < 3) time = 3;
-    if (time > 60) time = 60;
+    if (time > 20) time = 20;
     timePerExerciseInput.value = time;
     timeDisplay.textContent = `${time} секунд`;
     
@@ -102,11 +113,29 @@ function updateSettingsDisplay() {
     exercisesDisplay.textContent = `${exercises} вправ`;
 }
 
+// Validate time per exercise input
+function validateTimeInput() {
+    let time = parseInt(timePerExerciseInput.value) || 10;
+    if (time < 3) time = 3;
+    if (time > 60) time = 60;
+    timePerExerciseInput.value = time;
+    updateTimeDisplay();
+}
+
+// Validate total exercises input
+function validateExercisesInput() {
+    let exercises = parseInt(totalExercisesInput.value) || 10;
+    if (exercises < 1) exercises = 1;
+    if (exercises > 100) exercises = 100;
+    totalExercisesInput.value = exercises;
+    updateExercisesDisplay();
+}
+
 // Start the game with current settings
 function startGame() {
     // Validate that at least one number is selected
     if (gameState.selectedNumbers.length === 0) {
-        alert('Будь ласка, виберіть хоча б один номер для тренування!');
+        alert(getTranslation('selectAtLeastOne'));
         return;
     }
     
@@ -173,7 +202,7 @@ function generateQuestion() {
     }
     
     let [a, b] = generateNumbers(availableNumbers);
-    console.log(`Generated numbers: ${a}, ${b}`);
+
     while (gameState.lastGeneratedNumbers.length > 0 && (a === gameState.lastGeneratedNumbers[0] && b === gameState.lastGeneratedNumbers[1] || a === gameState.lastGeneratedNumbers[1] && b === gameState.lastGeneratedNumbers[0])) {
         // Regenerate if the same question was just asked
         const numbers = generateNumbers(availableNumbers);
@@ -235,7 +264,7 @@ function handleKeyPress(e) {
     // Handle number input
     // Don't allow input longer than the answer could be
     if (gameState.currentInput.length < String(gameState.currentAnswer).length + 1) {
-        if (gameState.currentInput === '0' || gameState.currentInput === '') {
+        if (gameState.currentInput === '' || gameState.currentInput === '0') {
             gameState.currentInput = value;
         } else {
             gameState.currentInput += value;
@@ -243,7 +272,7 @@ function handleKeyPress(e) {
     }
     
     // Update display
-    inputDisplay.textContent = gameState.currentInput || '0';
+    inputDisplay.textContent = gameState.currentInput;
 }
 
 // Handle backspace
@@ -261,14 +290,14 @@ function handlePhysicalKeyboard(e) {
     if (e.key >= '0' && e.key <= '9') {
         e.preventDefault();
         if (gameState.currentInput.length < String(gameState.currentAnswer).length + 1) {
-            if (gameState.currentInput === '0' || gameState.currentInput === '') {
+            if (gameState.currentInput === '' || gameState.currentInput === '0') {
                 gameState.currentInput = e.key;
             } else {
                 gameState.currentInput += e.key;
             }
         }
-        inputDisplay.textContent = gameState.currentInput || '0';
-    } 
+        inputDisplay.textContent = gameState.currentInput;
+    }
     // Backspace key
     else if (e.key === 'Backspace') {
         e.preventDefault();
@@ -408,6 +437,12 @@ function createConfetti() {
             style.remove();
         }, (animationDuration + delay) * 1000);
     }
+}
+
+// Toggle language between Ukrainian and English
+function toggleLanguage() {
+    const newLanguage = currentLanguage === 'ukr' ? 'en' : 'ukr';
+    setLanguage(newLanguage);
 }
 
 // Initialize the game when page loads

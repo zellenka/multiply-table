@@ -30,6 +30,7 @@ body {
 
 .screen-title {
     font-size: 2.8rem;
+    width: 100%;
     margin-bottom: 25px;
     color: #ff5252;
     text-shadow: 2px 2px 0 #ffd700;
@@ -37,6 +38,30 @@ body {
     display: inline-block;
 }
 
+.subtitle {
+    font-size: 1.4rem;
+    margin: 15px 0 25px;
+    color: #1a237e;
+    font-weight: bold;
+}
+
+.lang-toggle-btn {
+    background: linear-gradient(135deg, #2575fc, #6a11cb);
+    color: #fff;
+    border: none;
+    padding: 10px 18px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.lang-toggle-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
 .screen-title::after {
     content: '';
     position: absolute;
@@ -83,7 +108,7 @@ body {
 }
 
 .checkbox-label {
-    display: flex;
+    display: flex !important;
     align-items: center;
     justify-content: center;
     padding: 12px;
@@ -491,6 +516,34 @@ input[type="number"]:focus {
     background: rgba(244, 67, 54, 0.25);
     color: #c62828;
     border: 3px dashed #f44336;
+}
+
+.instructions {
+    margin-top: 30px;
+    font-size: 1.1rem;
+    color: #455a64;
+    line-height: 1.5;
+}
+
+.congratulations {
+    margin-top: 30px;
+    font-size: 1.3rem;
+    color: #37474f;
+    line-height: 1.6;
+}
+
+.total-result {
+    font-size: 2rem;
+    margin: 25px 0;
+    font-weight: bold;
+    color: #546e7a;
+}
+
+.header-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
 }
 
 .confetti {
