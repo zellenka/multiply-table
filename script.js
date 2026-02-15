@@ -439,9 +439,9 @@ function createConfetti() {
     }
 }
 
-// Toggle language between Ukrainian and English
+// Toggle language between English and Ukrainian
 function toggleLanguage() {
-    const newLanguage = currentLanguage === 'ukr' ? 'en' : 'ukr';
+    const newLanguage = currentLanguage === 'en' ? 'ukr' : 'en';
     setLanguage(newLanguage);
 }
 

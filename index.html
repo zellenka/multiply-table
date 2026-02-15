@@ -1,21 +1,21 @@
 <!DOCTYPE html>
-<html lang="uk">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Майстер множення</title>
+    <title>Multiplication Master</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="screen" id="settings-screen">
         <div class="header-bar">
-            <h1 class="screen-title">Майстер множення</h1>
-            <button id="lang-toggle-btn" class="lang-toggle-btn">EN</button>
+            <h1 class="screen-title">Multiplication Master</h1>
+            <button id="lang-toggle-btn" class="lang-toggle-btn">УК</button>
         </div>
-        <p class="subtitle" data-i18n="subtitle">Тренуйте навички множення з розвагою!</p>
+        <p class="subtitle" data-i18n="subtitle">Practice multiplication skills with fun!</p>
         
         <div class="setting-group">
-            <label data-i18n="selectNumbers">Виберіть числа для тренування:</label>
+            <label data-i18n="selectNumbers">Select numbers to practice:</label>
             <div class="checkboxes-grid">
                 <!-- <label class="checkbox-label"><input type="checkbox" class="number-checkbox" value="1"> 1</label> -->
                 <label class="checkbox-label"><input type="checkbox" class="number-checkbox" value="2"> 2</label>
@@ -31,38 +31,38 @@
         </div>
         
         <div class="setting-group">
-            <label for="time-per-exercise" data-i18n="timePerExercise">Час на вправу (секунди):</label>
+            <label for="time-per-exercise" data-i18n="timePerExercise">Time per exercise (seconds):</label>
             <div class="setting-controls">
                 <input type="number" id="time-per-exercise" min="3" max="60" value="10">
-                <div class="time-display" data-i18n-template="timeTemplate">10 секунд</div>
+                <div class="time-display" data-i18n-template="timeTemplate">10 seconds</div>
             </div>
         </div>
         
         <div class="setting-group">
-            <label for="total-exercises" data-i18n="totalExercises">Кількість вправ:</label>
+            <label for="total-exercises" data-i18n="totalExercises">Number of exercises:</label>
             <div class="setting-controls">
                 <input type="number" id="total-exercises" min="1" max="100" value="10">
-                <div class="range-display" id="exercises-display" data-i18n-template="exercisesTemplate">10 вправ</div>
+                <div class="range-display" id="exercises-display" data-i18n-template="exercisesTemplate">10 exercises</div>
             </div>
         </div>
         
-        <button class="start-btn" id="start-btn" data-i18n="startButton">ПОЧАТИ ТРЕНУВАННЯ</button>
+        <button class="start-btn" id="start-btn" data-i18n="startButton">START TRAINING</button>
         
         <div class="instructions">
-            <p><strong data-i18n="howToPlay">Як грати:</strong></p>
-            <p data-i18n="instruction1">• Вирішуйте приклади множення перед тим, як закінчиться час</p>
-            <p data-i18n="instruction2">• Використовуйте екранну клавіатуру для введення відповіді</p>
-            <p data-i18n="instruction3">• Правильні відповіді переводять вас до наступного завдання одразу</p>
-            <p data-i18n="instruction4">• Неправильні відповіді дають вам ще один шанс (але поспішайте!)</p>
+            <p><strong data-i18n="howToPlay">How to play:</strong></p>
+            <p data-i18n="instruction1">• Solve multiplication examples before time runs out</p>
+            <p data-i18n="instruction2">• Use the on-screen keyboard to enter your answer</p>
+            <p data-i18n="instruction3">• Correct answers take you to the next task immediately</p>
+            <p data-i18n="instruction4">• Wrong answers give you another chance (but hurry!)</p>
         </div>
     </div>
     
     <div class="screen" id="game-screen">
-        <h1 class="screen-title" data-i18n="gameTitle">Математичний виклик!</h1>
+        <h1 class="screen-title" data-i18n="gameTitle">Math Challenge!</h1>
         
         <div id="score-display">
-            <span class="correct-score"><span data-i18n="correct">✓ Правильно:</span> <span id="correct-count">0</span></span>
-            <span class="wrong-score"><span data-i18n="wrong">✗ Неправильно:</span> <span id="wrong-count">0</span></span>
+            <span class="correct-score"><span data-i18n="correct">✓ Correct:</span> <span id="correct-count">0</span></span>
+            <span class="wrong-score"><span data-i18n="wrong">✗ Wrong:</span> <span id="wrong-count">0</span></span>
         </div>
         
         <div id="timer-container">
@@ -90,31 +90,31 @@
         </div>
         
         <div id="keyboard-controls">
-            <button class="key-control backspace" id="backspace-btn" data-i18n="backspaceBtn">⌫ Видалити</button>
-            <button class="key-control enter" id="ok-btn" data-i18n="okBtn">ОК Відповідь</button>
+            <button class="key-control backspace" id="backspace-btn" data-i18n="backspaceBtn">⌫ Delete</button>
+            <button class="key-control enter" id="ok-btn" data-i18n="okBtn">OK Answer</button>
         </div>
     </div>
     
     <div class="screen" id="summary-screen">
-        <h1 class="screen-title" data-i18n="summaryTitle">Тренування завершено!</h1>
+        <h1 class="screen-title" data-i18n="summaryTitle">Training completed!</h1>
         
         <div class="final-score final-correct">
-            <span data-i18n="correctAnswers">Правильні відповіді:</span> <span id="final-correct">0</span>
+            <span data-i18n="correctAnswers">Correct answers:</span> <span id="final-correct">0</span>
         </div>
         
         <div class="final-score final-wrong">
-            <span data-i18n="wrongAnswers">Неправильні відповіді:</span> <span id="final-wrong">0</span>
+            <span data-i18n="wrongAnswers">Wrong answers:</span> <span id="final-wrong">0</span>
         </div>
         
         <div class="total-result">
-            <span data-i18n="totalResult">Загальний результат:</span> <span id="total-score">0</span>%
+            <span data-i18n="totalResult">Overall result:</span> <span id="total-score">0</span>%
         </div>
         
-        <button class="restart-btn" id="restart-btn" data-i18n="restartButton">ТРЕНУВАТИСЯ ЗНОВУ</button>
+        <button class="restart-btn" id="restart-btn" data-i18n="restartButton">PRACTICE AGAIN</button>
         
         <div class="congratulations">
-            <p data-i18n="congratsText1">Чудова робота з практики таблиці множення!</p>
-            <p data-i18n="congratsText2">Продовжуйте тренуватися, щоб стати Майстром математики!</p>
+            <p data-i18n="congratsText1">Great work practicing multiplication!</p>
+            <p data-i18n="congratsText2">Keep practicing to become a Math Master!</p>
         </div>
     </div>
 

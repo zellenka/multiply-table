@@ -83,10 +83,10 @@ const translations = {
     }
 };
 
-let currentLanguage = 'ukr'; // Default language
+let currentLanguage = 'en'; // Default language
 
 function getTranslation(key) {
-    return translations[currentLanguage][key] || translations.ukr[key];
+    return translations[currentLanguage][key] || translations.en[key];
 }
 
 function setLanguage(lang) {
@@ -99,7 +99,7 @@ function setLanguage(lang) {
 }
 
 function initializeLanguage() {
-    const savedLanguage = localStorage.getItem('preferredLanguage') || 'ukr';
+    const savedLanguage = localStorage.getItem('preferredLanguage') || 'en';
     currentLanguage = savedLanguage;
     updatePageLanguage();
     updateLanguageButtonState();
@@ -125,7 +125,7 @@ function updatePageLanguage() {
 function updateLanguageButtonState() {
     const langBtn = document.getElementById('lang-toggle-btn');
     if (langBtn) {
-        langBtn.textContent = currentLanguage === 'ukr' ? 'EN' : 'UKR';
+        langBtn.textContent = currentLanguage === 'en' ? 'УК' : 'EN';
     }
 }
 
