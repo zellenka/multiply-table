@@ -103,14 +103,19 @@ function updateSettingsDisplay() {
     if (time < 3) time = 3;
     if (time > 20) time = 20;
     timePerExerciseInput.value = time;
-    timeDisplay.textContent = `${time} секунд`;
-    
+    // Update only the value part, not the label
+    const timeValueSpan = timeDisplay.querySelector('.time-value');
+    if (timeValueSpan) timeValueSpan.textContent = time;
+    // (label is handled by translation)
+
     // Validate total exercises
     let exercises = parseInt(totalExercisesInput.value) || 10;
     if (exercises < 1) exercises = 1;
     if (exercises > 100) exercises = 100;
     totalExercisesInput.value = exercises;
-    exercisesDisplay.textContent = `${exercises} вправ`;
+    const exercisesValueSpan = exercisesDisplay.querySelector('.exercises-value');
+    if (exercisesValueSpan) exercisesValueSpan.textContent = exercises;
+    // (label is handled by translation)
 }
 
 // Validate time per exercise input
